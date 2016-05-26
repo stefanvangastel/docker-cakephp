@@ -7,7 +7,7 @@ Out-of-the-box CakePHP docker image
 Usage
 -----
 
-You can edit the Dockerfile to add your own Github URL
+You can edit the Dockerfile to add your own Github URL or Composer command to 
 
 To create the image `stefanvangastel/cakephp`, execute the following command on the docker-cakephp folder:
 
