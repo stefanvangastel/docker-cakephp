@@ -23,7 +23,7 @@ Running your CakePHP docker image
 
 Start your image:
 
-	docker run -d -p 80:80 stefanvangastel/cakephp
+	docker run -d -p 80:80 -e "SECURITY_SALT=<shake_your_salt_here>" stefanvangastel/cakephp
 
 Test your deployment:
 

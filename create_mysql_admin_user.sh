@@ -11,7 +11,7 @@ while [[ RET -ne 0 ]]; do
 done
 
 echo "=> Creating database cakephp in MySQL"
-/create_db.sh cakephp
+mysql -uroot -e "CREATE DATABASE cakephp"
 
 
 PASS=${MYSQL_PASS:-$(pwgen -s 12 1)}
