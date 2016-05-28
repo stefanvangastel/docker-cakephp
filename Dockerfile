@@ -43,7 +43,7 @@ RUN wget https://getcomposer.org/composer.phar && chmod +x composer.phar
 RUN rm -fr /app && php ./composer.phar create-project --prefer-dist cakephp/app /app
 
 ####################################################
-# 			End of app specific settings           #
+# 	End of app specific settings               #
 ####################################################
 
 # Link docroot to /app
