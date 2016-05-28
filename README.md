@@ -10,29 +10,34 @@ You can edit the `Dockerfile` to add your own git, composer or custom commands t
 
 To create the image `myvendor/mycakephpapp`, execute the following command on the docker-cakephp directory:
 
-	docker build -t myvendor/mycakephpapp .
+```bash
+docker build -t myvendor/mycakephpapp .
+```
 
 Optional: You can now push your new image to the / a registry:
 
-	docker push myvendor/mycakephpapp
-
+```bash
+docker push myvendor/mycakephpapp
+```
 
 Running your CakePHP docker image
 -----------------------------------
 
 Start your image forwarding container port 80 to localhost port 80:
 
-	docker run -d -p 80:80 myvendor/mycakephpapp
+```bash
+docker run -d -p 80:80 myvendor/mycakephpapp
+```
 
 Example: Connecting to a MySQL container
 -----------------------------------
 Start a [MySQL container](https://hub.docker.com/_/mysql/) 
 
-```
+```bash
 docker run -d \
 	--name mysql-server \
 	-p 3306:3306 \
-	-e MYSQL_ROOT_PASSWORD=pwd \
+	-e MYSQL_ROOT_PASSWORD=sekret \
 	-e MYSQL_DATABASE=cakephp \
 	mysql:latest
 ```
@@ -42,9 +47,9 @@ Start your image and:
 * Connect to a remote database server using the CakePHP DATABASE_URL env variable filled with the variables given in the command above.
 * Use the `database` session handler using our the SESSION_DEFAULTS env variable (see `Dockerfile` for implementation)
 
-```
+```bash
 docker run -d -p 80:80 \
-	-e "DATABASE_URL=mysql://root:pwd@mysql-server/cakephp?encoding=utf8&timezone=UTC&cacheMetadata=true" \
+	-e "DATABASE_URL=mysql://root:sekret@mysql-server/cakephp?encoding=utf8&timezone=UTC&cacheMetadata=true" \
 	-e "SESSION_DEFAULTS=database" \
 	--link mysql-server:mysql \
 	myvendor/mycakephpapp
