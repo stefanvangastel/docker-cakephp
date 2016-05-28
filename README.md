@@ -1,8 +1,7 @@
 docker-cakephp
 ======================
 
-Out-of-the-box CakePHP 3 docker image for deploying your CakePHP application able to connect to a remote database (MySQL) server.
-
+Dockerfile for deploying a CakePHP application in a Docker container, able to connect to a remote database with database-based sessions.
 
 Usage
 -----
@@ -49,6 +48,7 @@ Start your image and:
 		-e "SESSION_DEFAULTS=database" \
 		myvendor/mycakephpapp
 	```
+
 
 Test your deployment
 --------------------------
