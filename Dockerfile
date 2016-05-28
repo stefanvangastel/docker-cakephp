@@ -34,16 +34,19 @@ RUN a2enmod rewrite
 # Replace with application specific actions below  #
 ####################################################
 
-#Example, deploy a default CakePHP 3 installation
+# Example, deploy a default CakePHP 3 installation
 
-#Get composer
+# Get composer
 RUN wget https://getcomposer.org/composer.phar && chmod +x composer.phar
 
 # Download latest version of CakePHP into /app
 RUN rm -fr /app && php ./composer.phar create-project --prefer-dist cakephp/app /app
 
+# Make sessionhandler based on env file
+RUN sed -i -e "s/'php',/env('SESSION_DEFAULTS', 'php'),/" /app/config/app.php 
+
 ####################################################
-# 	End of app specific settings               #
+#       End of app specific settings               #
 ####################################################
 
 # Link docroot to /app
