@@ -28,26 +28,26 @@ Example: Connecting to a MySQL container
 -----------------------------------
 Start a [MySQL container](https://hub.docker.com/_/mysql/) 
 
-	```
-	docker run -d \
-		--name mysql-server \
-		-p 3306:3306 \
-		-e MYSQL_ROOT_PASSWORD=pwd \
-		-e MYSQL_DATABASE=cakephp \
-		mysql:latest
-	```
+```
+docker run -d \
+	--name mysql-server \
+	-p 3306:3306 \
+	-e MYSQL_ROOT_PASSWORD=pwd \
+	-e MYSQL_DATABASE=cakephp \
+	mysql:latest
+```
 
 Start your image and:
 * Link it to the MySQL container you just started (so your container can contact it)
 * Connect to a remote database server using the CakePHP DATABASE_URL env variable filled with the variables given in the command above.
 * Use the `database` session handler using our the SESSION_DEFAULTS env variable (see `Dockerfile` for implementation)
 
-	```
-	docker run -d -p 80:80 \
-		-e "DATABASE_URL=mysql://root:pwd@mysql-server/cakephp?encoding=utf8&timezone=UTC&cacheMetadata=true" \
-		-e "SESSION_DEFAULTS=database" \
-		myvendor/mycakephpapp
-	```
+```
+docker run -d -p 80:80 \
+	-e "DATABASE_URL=mysql://root:pwd@mysql-server/cakephp?encoding=utf8&timezone=UTC&cacheMetadata=true" \
+	-e "SESSION_DEFAULTS=database" \
+	myvendor/mycakephpapp
+```
 
 
 Test your deployment
