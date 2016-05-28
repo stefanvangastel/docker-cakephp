@@ -34,3 +34,8 @@ Test your deployment:
 	curl http://localhost/
 
 You can now start using your CakePHP container!
+
+Things to look out for
+-----------------------------------
+* Think about handling session when running multiple containers behind a loadbalancer. You could modify the `Dockerfile` to `sed` the `config/app.php` file to use the database or cache session handler.
+* If you want to store any files (e.g. uploads), please remember containers are 'stateless' and the data will be gone when you delete them.
