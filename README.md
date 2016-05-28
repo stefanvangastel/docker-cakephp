@@ -27,7 +27,7 @@ Start your image forwarding container port 80 to localhost port 80:
 	
 Start your image forwarding container port 80 to localhost port 80 and:
 * Connect to a remote database server using the CakePHP DATABASE_URL env variable
-* Use the `database` session handler (see `Dockerfile` for implementation)
+* Use the `database` session handler using our the SESSION_DEFAULTS env variable (see `Dockerfile` for implementation)
 
 	docker run -d -p 80:80 \
 		-e "DATABASE_URL=mysql://my_user:sekret@example.com/my_app?encoding=utf8&timezone=UTC&cacheMetadata=true" \
