@@ -1,26 +1,54 @@
-FROM tutum/lamp:latest
+FROM ubuntu:trusty
 MAINTAINER Stefan van Gastel <stefanvangastel@gmail.com>
 
-#Install packages
-RUN apt-get update && apt-get install -y \
-  php5-intl \
-  wget \
-  git
+# Install packages
+ENV DEBIAN_FRONTEND noninteractive
+RUN apt-get update && apt-get -y install \
+	supervisor \
+	git \
+	wget \
+	apache2 \
+	libapache2-mod-php5 \
+	php-apc \
+	php5-mcrypt \
+	php5-intl \
+	php5-mysql
 
-#Get composer
-RUN wget -O /usr/bin/composer https://getcomposer.org/composer.phar && chmod +x /usr/bin/composer
+# Listen to localhost servername
+RUN echo "ServerName localhost" >> /etc/apache2/apache2.conf
 
-# Download latest version of CakePHP into /app
-# You can replace these steps with custom steps
-RUN rm -fr /app && composer create-project --prefer-dist cakephp/app /app
+# Add image configuration and scripts
+ADD start-apache2.sh /start-apache2.sh
 
-# Configure CakePHP to connect to local DB
-ADD app.php /app/config/app.php
-
-# Add database setup script
-ADD create_mysql_admin_user.sh /create_mysql_admin_user.sh
+# Make sure scripts are excutable
 RUN chmod 755 /*.sh
 
-#Expose ports to the host
-EXPOSE 80 3306
-CMD ["/run.sh"]
+# Add supervisor config for webserver
+ADD supervisord-apache2.conf /etc/supervisor/conf.d/supervisord-apache2.conf
+
+# config to enable .htaccess
+ADD apache_default /etc/apache2/sites-available/000-default.conf
+RUN a2enmod rewrite
+
+####################################################
+# Replace with application specific actions below  #
+####################################################
+
+#Example, deploy a default CakePHP 3 installation
+
+#Get composer
+RUN wget https://getcomposer.org/composer.phar && chmod +x composer.phar
+
+# Download latest version of CakePHP into /app
+RUN rm -fr /app && php ./composer.phar create-project --prefer-dist cakephp/app /app
+
+####################################################
+# 			End of app specific settings           #
+####################################################
+
+# Link docroot to /app
+RUN mkdir -p /app && rm -fr /var/www/html && ln -s /app /var/www/html
+
+#Expose ports
+EXPOSE 80
+CMD ["supervisord", "-n"]
