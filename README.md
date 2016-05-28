@@ -46,6 +46,7 @@ Start your image and:
 docker run -d -p 80:80 \
 	-e "DATABASE_URL=mysql://root:pwd@mysql-server/cakephp?encoding=utf8&timezone=UTC&cacheMetadata=true" \
 	-e "SESSION_DEFAULTS=database" \
+	--link mysql-server:mysql \
 	myvendor/mycakephpapp
 ```
 
