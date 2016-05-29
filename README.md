@@ -1,7 +1,9 @@
 docker-cakephp
 ======================
 
-Dockerfile for deploying a CakePHP application in a Docker container, able to connect to a remote database with database-based sessions.
+Dockerfile for deploying your CakePHP application in a Docker container, able to connect to a remote database with database-based sessions and inject ENV vars to configure your application.
+
+Based on Ubuntu 16.04 Xenial and PHP 7.0
 
 Usage
 -----
@@ -14,7 +16,7 @@ To create the image `myvendor/mycakephpapp`, execute the following command on th
 docker build -t myvendor/mycakephpapp .
 ```
 
-Optional: You can now push your new image to the / a registry:
+Optional: You can now push your new image to a registry:
 
 ```bash
 docker push myvendor/mycakephpapp
