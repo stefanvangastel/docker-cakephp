@@ -5,7 +5,7 @@ Dockerfile for deploying your CakePHP application in a Docker container, able to
 
 Based on Ubuntu 16.04 Xenial and PHP 7.0
 
-**Note: This project is meant to be an example to study the basics and essentials, therefore it is build on an Ubuntu base image rather then a PHP base image.**
+**Note: This project is meant to be an example to study the basics and essentials of CakePHP in a Docker environment, therefore it is build on an Ubuntu base image rather then a PHP base image, uses a 'simple' webserver like Apache and has some non-efficient commands to demonstrate stuff.**
 
 Usage
 -----
