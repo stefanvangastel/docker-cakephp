@@ -72,4 +72,4 @@ You can now start using your CakePHP container!
 Things to look out for
 -----------------------------------
 * Think about handling session when running multiple containers behind a loadbalancer. You could modify the `Dockerfile` to `sed` the `config/app.php` file to use the database or cache session handler as implemented in the example.
-* If you want to store any files (e.g. uploads), please remember containers are 'stateless' and the data will be gone when you delete them.
+* If you want to store any files (e.g. uploads), please remember containers are 'stateless' and the data will be gone when you delete them. You can use [`volumes`](https://docs.docker.com/engine/tutorials/dockervolumes/#mount-a-host-directory-as-a-data-volume) or an object storage with a webservice interface like Amazon S3. 
