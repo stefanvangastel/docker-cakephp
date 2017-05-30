@@ -26,7 +26,7 @@
 
         # Possible values include: debug, info, notice, warn, error, crit,
         # alert, emerg.
-        LogLevel warn
+        LogLevel debug
 
         CustomLog ${APACHE_LOG_DIR}/access.log combined
 
