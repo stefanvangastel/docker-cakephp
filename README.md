@@ -40,7 +40,6 @@ Start a [MySQL container](https://hub.docker.com/_/mysql/)
 ```bash
 docker run -d \
 	--name mysql-server \
-	-p 3306:3306 \
 	-e MYSQL_ROOT_PASSWORD=sekret \
 	-e MYSQL_DATABASE=cakephp \
 	mysql:latest
@@ -53,6 +52,7 @@ Start your image and:
 
 ```bash
 docker run -d -p 80:80 \
+	--name cakephp \
 	-e "DATABASE_URL=mysql://root:sekret@mysql-server/cakephp?encoding=utf8&timezone=UTC&cacheMetadata=true" \
 	-e "SESSION_DEFAULTS=database" \
 	--link mysql-server:mysql \
