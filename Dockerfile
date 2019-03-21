@@ -31,7 +31,7 @@ RUN a2enmod rewrite && \
 
 # Clone your application (cloning CakePHP 3 / app instead of composer create project to demonstrate application deployment example)
 RUN rm -rf /var/www/html && \
-	git clone https://github.com/cakephp/app.git /var/www/html
+	git clone --depth=1 https://github.com/cakephp/app.git /var/www/html
 
 # Set workdir (no more cd from now)
 WORKDIR /var/www/html
