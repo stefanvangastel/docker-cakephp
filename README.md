@@ -42,7 +42,7 @@ docker run -d \
 	--name mysql-server \
 	-e MYSQL_ROOT_PASSWORD=sekret \
 	-e MYSQL_DATABASE=cakephp \
-	mysql:latest
+	mysql:5.7
 ```
 
 Start your image and:
